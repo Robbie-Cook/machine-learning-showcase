@@ -1,5 +1,7 @@
 import React from "react"
-import { Link } from "gatsby"
+import NavBar from "./navbar.js"
+import SEO from './seo'
+import styled from 'styled-components'
 import {
   Grommet,
   Box,
@@ -11,46 +13,34 @@ import {
   Text,
 } from "grommet"
 
-import { Menu } from 'grommet-icons';
+const Main = styled.div`
+margin: 20px 60px;
+`
 
-import { rhythm, scale } from "../utils/typography"
 
 class Layout extends React.Component {
   render() {
     return (
       <Grommet>
+        <SEO />
         <Grid
           fill
           rows={["auto", "flex"]}
           columns={["auto", "flex"]}
-          areas={[
-            { name: "header", start: [0, 0], end: [1, 0] },
-          ]}
+          areas={
+            [
+              { name: "header", start: [0, 0], end: [1, 0] },
+              { name: "main", start: [0, 1], end: [1, 1] }
+            ]}
         >
-          <Box
-            gridArea="header"
-            direction="row"
-            align="center"
-            justify="between"
-            pad={{ horizontal: "medium", vertical: "small" }}
-            background="dark-2"
-          >
-            <Menu />
-            <Text>Machine Learning</Text>
-            <Link>General Overview</Link>
+          <Box gridArea="header">
+            <NavBar />
           </Box>
-          {/* <Box gridArea="main" justify="center" align="center">
-            <div>
-              <main>{this.props.children}</main>
-            </div>
+          <Box gridArea="main">
+            <Main>
+              {this.props.children}
+            </Main>
           </Box>
-          <Box gridArea="footer" justify="center" align="center">
-            <footer>
-              © {new Date().getFullYear()}, Robbie Cook. Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
-          </Box> */}
         </Grid>
       </Grommet>
     )
